@@ -49,7 +49,7 @@ runs:
         git init
         git add .
         git commit -m "Deploy to Github Pages via Deploy Action"
-        git push --force --quiet "ssh://${{ inputs.username }}@github.com/${{ inputs.reponame }}.git" master:gh-pages
+        git push --force --quiet "ssh://git@github.com/${{ inputs.reponame }}.git" master:gh-pages
       shell: bash
       env:
         USERNAME: ${{ inputs.username }}
