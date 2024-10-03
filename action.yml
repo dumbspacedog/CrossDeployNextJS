@@ -20,11 +20,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-      - name: Build and Deploy
-        run: entrypoint.sh
-        shell: bash
-        env:
-          USERNAME: ${{ inputs.username }}
-          REPONAME: ${{ inputs.reponame }}
-          TOKEN: ${{ inputs.token }}
-          USEYARN: ${{ inputs.useyarn }}
+    - name: Make entrypoint.sh executable
+      run: chmod +x ./entrypoint.sh
+      shell: bash
+    - name: Build and Deploy
+      run: entrypoint.sh
+      shell: bash
+      env:
+        USERNAME: ${{ inputs.username }}
+        REPONAME: ${{ inputs.reponame }}
+        TOKEN: ${{ inputs.token }}
+        USEYARN: ${{ inputs.useyarn }}

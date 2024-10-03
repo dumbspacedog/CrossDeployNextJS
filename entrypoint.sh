@@ -24,5 +24,5 @@ cd /tmp/out
 # Push the build to the gh-pages branch
 git init
 git add .
-git commit -m "Deploy to Github Pages via CI"
+git commit -m "Deploy to Github Pages via Deploy Action"
 git push --force --quiet "ssh://$USERNAME@github.com/$REPONAME.git" master:gh-pages
