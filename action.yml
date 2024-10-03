@@ -35,11 +35,9 @@ runs:
         if [ "${{ inputs.useyarn }}" = "true" ]; then
             yarn install
             yarn build
-            yarn export
         else
             npm install
             npm run build
-            npm run export
         fi
 
 
