@@ -47,6 +47,9 @@ runs:
         mv out /tmp/out
         cd /tmp/out
 
+        rm .next/* -rf
+
+        
         # Push the build to the gh-pages branch
         git init
         git add .
