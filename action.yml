@@ -48,8 +48,9 @@ runs:
         cd /tmp/out
 
         rm .next/* -rf
+        touch /tmp/out/.nojekyll 
 
-        
+
         # Push the build to the gh-pages branch
         git init
         git add .
