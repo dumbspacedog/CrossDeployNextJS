@@ -20,5 +20,5 @@ jobs:
       with:
         username: 'YourGithubName'
         reponame: 'YourRepoName'
-        ssh_key: ${{ secrets.GITHUB_PUBKEY }} # For added protection, don't change this line. To update this value, check secret settings in your repository.
+        ssh_key: ${{ secrets.PUBKEY }} # For added protection, don't change this line. To update this value, check secret settings in your repository.
 ```
