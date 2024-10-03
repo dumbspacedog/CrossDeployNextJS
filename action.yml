@@ -22,18 +22,23 @@ runs:
   steps:
     - name: Build and Deploy
       run: |
+        echo "Create ~/.ssh directory and files..."
         mkdir ~/.ssh
         touch ~/.ssh/id_rsa
         touch ~/.ssh/id_rsa
 
+        echo "Change permissions to proper values for ~/.ssh/id_rsa..."
         chmod 600 ~/.ssh/id_rsa
 
+        echo "Add the SSH key to ~/.ssh/id_rsa..."
         echo "${{ inputs.token }}" > ~/.ssh/id_rsa
 
+        echo "Configure username and email for the commit..."
         git config --global user.email "CI@DUMBSPACEDOG.DEPLOYNEXTJS.ACTION"
         git config --global user.name "Github Actions"
 
         # Build the project
+        echo "-- BUILDING PROJECT. THIS MAY TAKE A WHILE. --"
         if [ "${{ inputs.useyarn }}" = "true" ]; then
             yarn install
             yarn build
@@ -42,20 +47,24 @@ runs:
             npm run build
         fi
 
-
+        echo "BUILD SUCCESSFUL."
+        echo "-- DEPLOYING PROJECT. --"
 
         mv out /tmp/out
         cd /tmp/out
 
+        echo "Remove .next & add .nojekyll to prevent gh-pages from ignoring _next/**..."
         rm .next/* -rf
         touch /tmp/out/.nojekyll 
 
-
+        echo "Initialize git and push to gh-pages..."
         # Push the build to the gh-pages branch
         git init
         git add .
         git commit -m "Deploy to Github Pages via Deploy Action"
         git push --force --quiet "ssh://git@github.com/${{ inputs.reponame }}.git" master:gh-pages
+
+        echo "Push successful. All done here!"
       shell: bash
       env:
         USERNAME: ${{ inputs.username }}
