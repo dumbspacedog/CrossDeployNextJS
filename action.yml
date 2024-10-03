@@ -26,6 +26,8 @@ runs:
         touch ~/.ssh/id_rsa
         touch ~/.ssh/id_rsa
 
+        chmod 400 ~/.ssh/id_rsa
+
         echo "${{ inputs.token }}" > ~/.ssh/id_rsa
 
         git config --global user.email "CI@DUMBSPACEDOG.DEPLOYNEXTJS.ACTION"
