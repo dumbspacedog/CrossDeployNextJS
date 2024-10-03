@@ -24,21 +24,21 @@ runs:
       run: |
         mkdir ~/.ssh
         touch ~/.ssh/id_rsa.pub
-        
+
         echo "${{ inputs.token }}" > ~/.ssh/id_rsa.pub
 
         git config --global user.email "CI@DUMBSPACEDOG.DEPLOYNEXTJS.ACTION"
         git config --global user.name "Github Actions"
 
         # Build the project
-        if [ -z "${{ inputs.useyarn }}" ] then
-            npm install
-            npm run build
-            npm run export
-        else
+        if [ "${{ inputs.useyarn }}" = "true" ]; then
             yarn install
             yarn build
             yarn export
+        else
+            npm install
+            npm run build
+            npm run export
         fi
 
 
