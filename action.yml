@@ -1,26 +1,26 @@
-name: 'Vue to Github Pages'
+name: 'Cross-deploy NextJS Website'
 branding:
   icon: 'activity'  
   color: 'blue'
-description: 'This Action will Build your Vue Project and deploy it to Github Pages'
+description: 'This action builds and deploys your NextJS Website to a repo of your choice w/ Github Pages enabled.'
 inputs:
   username:
-    description: 'Your username'
+    description: 'Your Github Username'
     required: true
   reponame:
     description: 'Your reponame'
     required: true
   token:
-    description: 'Your Github token'
+    description: 'Your SSH PUBLIC Key'
     required: true
   useyarn:
-    description: 'Use yarn to build'
+    description: 'Use Yarn to build'
     required: false
     default: false
 runs:
   using: "composite"
   steps:
-      - name: Build Vue
+      - name: Build and Deploy
         run: entrypoint.sh
         shell: bash
         env:
