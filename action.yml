@@ -68,7 +68,8 @@ runs:
         git add .
         git commit -m "Deploy to Github Pages via Deploy Action.
         
-        
+
+
         Co-authored-by: $AUTHOR_NAME <$AUTHOR_EMAIL>"
         git push --force --quiet "ssh://git@github.com/${{ inputs.reponame }}.git" master:gh-pages
 
